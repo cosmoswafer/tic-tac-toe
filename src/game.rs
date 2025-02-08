@@ -110,10 +110,10 @@ pub fn TicTacToe() -> impl IntoView {
                 {move || {
                     if !game_started.get() && winner.get().is_empty() {
                         view! {
-                            <button class="start-button" on:click=start_game>"Start Game"</button>
+                            <button class="reset-button" on:click=start_game>"Start Game"</button>
                         }
                     } else {
-                        view! { <button class="start-button" style="display: none;"></button> }
+                        view! { <button class="reset-button" style="display: none;"></button> }
                     }
                 }}
             </div>
