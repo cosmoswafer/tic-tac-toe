@@ -28,12 +28,12 @@ pub fn TicTacToe() -> impl IntoView {
         if board.get()[index].is_empty() && winner.get().is_empty() {
             let mut new_board = board.get();
             new_board[index] = current_player.get();
-            set_board(new_board.clone());
+            set_board.set(new_board.clone());
             
             if let Some(winner_player) = check_winner(new_board) {
-                set_winner(winner_player);
+                set_winner.set(winner_player);
             } else {
-                set_current_player(if current_player.get() == "X" {
+                set_current_player.set(if current_player.get() == "X" {
                     String::from("O")
                 } else {
                     String::from("X")
@@ -43,9 +43,9 @@ pub fn TicTacToe() -> impl IntoView {
     };
 
     let reset_game = move |_| {
-        set_board(vec![String::new(); 9]);
-        set_current_player(String::from("X"));
-        set_winner(String::new());
+        set_board.set(vec![String::new(); 9]);
+        set_current_player.set(String::from("X"));
+        set_winner.set(String::new());
     };
 
     view! {
