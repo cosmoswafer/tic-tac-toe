@@ -53,13 +53,28 @@ pub fn TicTacToe() -> impl IntoView {
             <h1>"Tic Tac Toe"</h1>
             <div class="status">
                 {move || {
-                    if !winner.get().is_empty() {
-                        format!("Winner: {}", winner.get())
-                    } else {
+                    if winner.get().is_empty() {
                         format!("Current player: {}", current_player.get())
+                    } else {
+                        String::new()
                     }
                 }}
             </div>
+            {move || {
+                if !winner.get().is_empty() {
+                    view! {
+                        <div class="modal-overlay">
+                            <div class="modal">
+                                <h2>"Congratulations!"</h2>
+                                <p>{"Winner: "}{winner.get()}</p>
+                                <button on:click=reset_game>"Play Again"</button>
+                            </div>
+                        </div>
+                    }
+                } else {
+                    view! { <></> }
+                }
+            }}
             <div class="board">
                 {(0..9)
                     .map(|i| {
