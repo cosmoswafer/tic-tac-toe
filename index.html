@@ -2,23 +2,12 @@
 <html>
   <head>
     <title>Tic Tac Toe</title>
-    <link rel="stylesheet" href="styles.css">
+    %leptos%
+      { headers }
+      <Style id="leptos-style">{ include_str!("../public/styles.css") }</Style>
+    </head>
   </head>
   <body>
-    <div class="game-container">
-      <div class="status">Current Player: X</div>
-      <div class="board">
-        <button class="cell"></button>
-        <button class="cell"></button>
-        <button class="cell"></button>
-        <button class="cell"></button>
-        <button class="cell"></button>
-        <button class="cell"></button>
-        <button class="cell"></button>
-        <button class="cell"></button>
-        <button class="cell"></button>
-      </div>
-      <button class="reset-button">Reset Game</button>
-    </div>
+    <div id="game-root"></div>
   </body>
 </html>
