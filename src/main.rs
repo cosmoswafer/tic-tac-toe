@@ -1,4 +1,5 @@
 use leptos::*;
+use leptos_meta::Style;
 mod game;
 use game::TicTacToe;
 
