@@ -8,6 +8,7 @@ pub fn TicTacToe() -> impl IntoView {
     let (winner, set_winner) = create_signal(String::new());
     let (x_time_left, set_x_time_left) = create_signal(10);
     let (o_time_left, set_o_time_left) = create_signal(10);
+    let (game_started, set_game_started) = create_signal(false);
 
     let check_winner = move |board: Vec<String>| {
         let winning_combinations = [
@@ -28,7 +29,7 @@ pub fn TicTacToe() -> impl IntoView {
     };
 
     let handle_click = move |index: usize| {
-        if board.get()[index].is_empty() && winner.get().is_empty() {
+        if board.get()[index].is_empty() && winner.get().is_empty() && game_started.get() {
             let mut new_board = board.get();
             new_board[index] = current_player.get();
             set_board.set(new_board.clone());
@@ -54,12 +55,17 @@ pub fn TicTacToe() -> impl IntoView {
         set_winner.set(String::new());
         set_x_time_left.set(10);
         set_o_time_left.set(10);
+        set_game_started.set(false);
+    };
+
+    let start_game = move |_| {
+        set_game_started.set(true);
     };
 
     // Timer logic
     let timer = set_interval_with_handle(
         move || {
-            if winner.get().is_empty() {
+            if winner.get().is_empty() && game_started.get() {
                 if current_player.get() == "❌" {
                     let time = x_time_left.get();
                     if time > 0 {
@@ -91,13 +97,24 @@ pub fn TicTacToe() -> impl IntoView {
             <h1>"Tic Tac Toe"</h1>
             <div class="status">
                 {move || {
-                    if winner.get().is_empty() {
+                    if !game_started.get() {
+                        String::from("Click Start to begin!")
+                    } else if winner.get().is_empty() {
                         format!("Current player: {}", current_player.get())
                     } else {
                         String::new()
                     }
                 }}
             </div>
+            {move || {
+                if !game_started.get() && winner.get().is_empty() {
+                    view! {
+                        <button class="start-button" on:click=start_game>"Start Game"</button>
+                    }
+                } else {
+                    view! { <div></div> }
+                }
+            }}
             <div class="timers">
                 <div class="timer">
                     {"❌ Time: "}{move || x_time_left.get()}{" seconds"}
