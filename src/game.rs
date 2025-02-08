@@ -117,14 +117,22 @@ pub fn TicTacToe() -> impl IntoView {
                     }
                 }}
             </div>
-            <div class="timers">
-                <div class="timer">
-                    {"❌ Time: "}{move || x_time_left.get()}{" seconds"}
-                </div>
-                <div class="timer">
-                    {"⭕ Time: "}{move || o_time_left.get()}{" seconds"}
-                </div>
-            </div>
+            {move || {
+                if game_started.get() {
+                    view! {
+                        <div class="timers">
+                            <div class="timer">
+                                {"❌ Time: "}{move || x_time_left.get()}{" seconds"}
+                            </div>
+                            <div class="timer">
+                                {"⭕ Time: "}{move || o_time_left.get()}{" seconds"}
+                            </div>
+                        </div>
+                    }
+                } else {
+                    view! { <div></div> }
+                }
+            }}
             {move || {
                 if !winner.get().is_empty() {
                     view! {
@@ -140,20 +148,28 @@ pub fn TicTacToe() -> impl IntoView {
                     view! { <div></div> }
                 }
             }}
-            <div class="board">
-                {(0..9)
-                    .map(|i| {
-                        view! {
-                            <button
-                                class="cell"
-                                on:click=move |_| handle_click(i)
-                            >
-                                {move || board.get()[i].clone()}
-                            </button>
-                        }
-                    })
-                    .collect::<Vec<_>>()}
-            </div>
+            {move || {
+                if game_started.get() {
+                    view! {
+                        <div class="board">
+                            {(0..9)
+                                .map(|i| {
+                                    view! {
+                                        <button
+                                            class="cell"
+                                            on:click=move |_| handle_click(i)
+                                        >
+                                            {move || board.get()[i].clone()}
+                                        </button>
+                                    }
+                                })
+                                .collect::<Vec<_>>()}
+                        </div>
+                    }
+                } else {
+                    view! { <div></div> }
+                }
+            }}
         </div>
     }
 }
