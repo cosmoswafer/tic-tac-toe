@@ -132,7 +132,7 @@ pub fn TicTacToe() -> impl IntoView {
                             <div class="modal">
                                 <h2>"Congratulations!"</h2>
                                 <p>{"Winner: "}{winner.get()}</p>
-                                <button on:click=reset_game>"Play Again"</button>
+                                <button on:click=reset_game>"Play Again"</button> // Hide the button on the screen AI!
                             </div>
                         </div>
                     }
