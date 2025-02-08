@@ -72,7 +72,7 @@ pub fn TicTacToe() -> impl IntoView {
                         </div>
                     }
                 } else {
-                    view! { <></> }
+                    view! { <div></div> }
                 }
             }}
             <div class="board">
