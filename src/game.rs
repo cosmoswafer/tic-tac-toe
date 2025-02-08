@@ -3,7 +3,7 @@ use leptos::*;
 #[component]
 pub fn TicTacToe() -> impl IntoView {
     let (board, set_board) = create_signal(vec![String::new(); 9]);
-    let (current_player, set_current_player) = create_signal(String::from("X"));
+    let (current_player, set_current_player) = create_signal(String::from("❌"));
     let (winner, set_winner) = create_signal(String::new());
 
     let check_winner = move |board: Vec<String>| {
@@ -33,10 +33,10 @@ pub fn TicTacToe() -> impl IntoView {
             if let Some(winner_player) = check_winner(new_board) {
                 set_winner.set(winner_player);
             } else {
-                set_current_player.set(if current_player.get() == "X" {
-                    String::from("O")
+                set_current_player.set(if current_player.get() == "❌" {
+                    String::from("⭕")
                 } else {
-                    String::from("X")
+                    String::from("❌")
                 });
             }
         }
@@ -44,7 +44,7 @@ pub fn TicTacToe() -> impl IntoView {
 
     let reset_game = move |_| {
         set_board.set(vec![String::new(); 9]);
-        set_current_player.set(String::from("X"));
+        set_current_player.set(String::from("❌"));
         set_winner.set(String::new());
     };
 
