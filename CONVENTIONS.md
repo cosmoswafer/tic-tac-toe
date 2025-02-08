@@ -1,0 +1,1 @@
+- Rust Leptos client side rendering web app
