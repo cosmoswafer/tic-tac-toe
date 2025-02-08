@@ -132,6 +132,7 @@ pub fn TicTacToe() -> impl IntoView {
                             <div class="modal">
                                 <h2>"Congratulations!"</h2>
                                 <p>{"Winner: "}{winner.get()}</p>
+                                <button on:click=reset_game>"Play Again"</button> 
                             </div>
                         </div>
                     }
@@ -153,7 +154,7 @@ pub fn TicTacToe() -> impl IntoView {
                     })
                     .collect::<Vec<_>>()}
             </div>
-            <button class="reset-button" on:click=reset_game>"Reset Game"</button>
+            <button class="reset-button" on:click=reset_game>"Reset Game"</button> // Hide the button via CSS AI!
         </div>
     }
 }
