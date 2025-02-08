@@ -106,15 +106,17 @@ pub fn TicTacToe() -> impl IntoView {
                     }
                 }}
             </div>
-            {move || {
-                if !game_started.get() && winner.get().is_empty() {
-                    view! {
-                        <button class="start-button" on:click=start_game>"Start Game"</button>
+            <div class="start-button-container">
+                {move || {
+                    if !game_started.get() && winner.get().is_empty() {
+                        view! {
+                            <button class="start-button" on:click=start_game>"Start Game"</button>
+                        }
+                    } else {
+                        view! { <button class="start-button" style="display: none;"></button> }
                     }
-                } else {
-                    view! { <div></div> }
-                }
-            }}
+                }}
+            </div>
             <div class="timers">
                 <div class="timer">
                     {"❌ Time: "}{move || x_time_left.get()}{" seconds"}
