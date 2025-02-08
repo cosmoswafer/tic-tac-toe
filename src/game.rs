@@ -1,10 +1,13 @@
 use leptos::*;
+use std::time::Duration;
 
 #[component]
 pub fn TicTacToe() -> impl IntoView {
     let (board, set_board) = create_signal(vec![String::new(); 9]);
     let (current_player, set_current_player) = create_signal(String::from("❌"));
     let (winner, set_winner) = create_signal(String::new());
+    let (x_time_left, set_x_time_left) = create_signal(10);
+    let (o_time_left, set_o_time_left) = create_signal(10);
 
     let check_winner = move |board: Vec<String>| {
         let winning_combinations = [
@@ -33,11 +36,14 @@ pub fn TicTacToe() -> impl IntoView {
             if let Some(winner_player) = check_winner(new_board) {
                 set_winner.set(winner_player);
             } else {
-                set_current_player.set(if current_player.get() == "❌" {
-                    String::from("⭕")
+                // Reset timer for next player
+                if current_player.get() == "❌" {
+                    set_x_time_left.set(10);
+                    set_current_player.set(String::from("⭕"));
                 } else {
-                    String::from("❌")
-                });
+                    set_o_time_left.set(10);
+                    set_current_player.set(String::from("❌"));
+                }
             }
         }
     };
@@ -46,7 +52,39 @@ pub fn TicTacToe() -> impl IntoView {
         set_board.set(vec![String::new(); 9]);
         set_current_player.set(String::from("❌"));
         set_winner.set(String::new());
+        set_x_time_left.set(10);
+        set_o_time_left.set(10);
     };
+
+    // Timer logic
+    let timer = set_interval_with_handle(
+        move || {
+            if winner.get().is_empty() {
+                if current_player.get() == "❌" {
+                    let time = x_time_left.get();
+                    if time > 0 {
+                        set_x_time_left.set(time - 1);
+                    } else {
+                        set_winner.set(String::from("⭕"));
+                    }
+                } else {
+                    let time = o_time_left.get();
+                    if time > 0 {
+                        set_o_time_left.set(time - 1);
+                    } else {
+                        set_winner.set(String::from("❌"));
+                    }
+                }
+            }
+        },
+        Duration::from_secs(1),
+    );
+
+    on_cleanup(move || {
+        if let Ok(handle) = timer {
+            handle.clear();
+        }
+    });
 
     view! {
         <div class="game-container">
@@ -59,6 +97,14 @@ pub fn TicTacToe() -> impl IntoView {
                         String::new()
                     }
                 }}
+            </div>
+            <div class="timers">
+                <div class="timer">
+                    {"❌ Time: "}{move || x_time_left.get()}{" seconds"}
+                </div>
+                <div class="timer">
+                    {"⭕ Time: "}{move || o_time_left.get()}{" seconds"}
+                </div>
             </div>
             {move || {
                 if !winner.get().is_empty() {
