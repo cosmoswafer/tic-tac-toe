@@ -154,7 +154,6 @@ pub fn TicTacToe() -> impl IntoView {
                     })
                     .collect::<Vec<_>>()}
             </div>
-            <button class="reset-button" on:click=reset_game>"Reset Game"</button> // Hide the button via CSS AI!
         </div>
     }
 }
