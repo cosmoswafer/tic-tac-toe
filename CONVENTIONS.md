@@ -49,5 +49,12 @@ This project follows a modern web application architecture using Rust and Leptos
 
 ## Leptos main functions
 
-# Explain the mount_to_body function in Leptos in the main.rs file #AI!
+## mount_to_body
+
+The `mount_to_body` function is a core Leptos utility that:
+- Mounts a Leptos component as a child of the document body
+- Takes a closure that returns the root component view
+- Initializes the Leptos runtime and reactive system
+- Handles WASM rendering of components to the DOM
+- Is typically used as the main entry point for Leptos apps
 
