@@ -19,3 +19,7 @@ System Architecture:
    - No backend server required (static hosting)
    - State managed client-side through Leptos signals
 
+
+# Architecture
+
+# Please explain the overall projecrt structure and the architecture of the project. #AI!
