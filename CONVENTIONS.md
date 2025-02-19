@@ -47,9 +47,7 @@ This project follows a modern web application architecture using Rust and Leptos
 
 # API reference
 
-## Leptos main functions
-
-## mount_to_body
+## Leptos main functions mount_to_body
 
 The `mount_to_body` function is a core Leptos utility that:
 - Mounts a Leptos component as a child of the document body
@@ -78,3 +76,7 @@ fn MyComponent() -> impl IntoView {
         <p>"This is a mounted component"</p>
     }
 }
+```
+
+# Add the explanation of the comonent in the game.rs #AI!
+## Example component
