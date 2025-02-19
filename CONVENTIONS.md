@@ -22,4 +22,26 @@ System Architecture:
 
 # Architecture
 
-# Please explain the overall projecrt structure and the architecture of the project. #AI!
+This project follows a modern web application architecture using Rust and Leptos:
+
+1. Project Structure
+   - /src: Core Rust source code
+     - main.rs: Application entry point
+     - game.rs: Game logic and components
+   - /public: Static assets
+   - /target: Build outputs (compiled WASM)
+   
+2. Component Architecture
+   - Modular components using Leptos
+   - Reactive state management
+   - Event-driven user interactions
+
+3. Build Pipeline
+   - Trunk handles asset bundling
+   - Rust compiles to WASM
+   - Static files served to browser
+
+4. Runtime Architecture
+   - Client-side only (no server)
+   - WASM execution in browser
+   - Reactive updates via Leptos
