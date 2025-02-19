@@ -1,7 +1,5 @@
 - Rust Leptos client side rendering web app
 - To test the app, run `trunk serve --open` in the terminal
-- Always run the above command to test the app on each change
-- Fix any errors in the app from the terminal output (if any)
 
 System Architecture:
 1. Frontend (Client-Side Rendering)
@@ -45,3 +43,11 @@ This project follows a modern web application architecture using Rust and Leptos
    - Client-side only (no server)
    - WASM execution in browser
    - Reactive updates via Leptos
+
+
+# API reference
+
+## Leptos main functions
+
+# Explain the mount_to_body function in Leptos in the main.rs file #AI!
+
