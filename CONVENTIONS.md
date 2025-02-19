@@ -78,7 +78,7 @@ fn MyComponent() -> impl IntoView {
 }
 ```
 
-## TicTacToe Component (game.rs)
+## TicTacToe Component example
 
 The `TicTacToe` component implements a complete Tic-Tac-Toe game with the following features:
 
@@ -106,4 +106,7 @@ Key Functions:
 - `start_game`: Initiates a new game
 - Timer interval: Manages countdown for each player's turn
 
-## Example component
+# Give a short example here #AI!
+```rust
+
+```
