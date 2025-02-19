@@ -58,5 +58,23 @@ The `mount_to_body` function is a core Leptos utility that:
 - Handles WASM rendering of components to the DOM
 - Is typically used as the main entry point for Leptos apps
 
-# Add example snippet here #AI!
 ```rust
+use leptos::*;
+
+fn main() {
+    mount_to_body(|| {
+        view! { 
+            <div>
+                <h1>"Hello from Leptos!"</h1>
+                <MyComponent/>
+            </div>
+        }
+    })
+}
+
+#[component]
+fn MyComponent() -> impl IntoView {
+    view! {
+        <p>"This is a mounted component"</p>
+    }
+}
