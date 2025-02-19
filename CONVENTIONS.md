@@ -78,5 +78,32 @@ fn MyComponent() -> impl IntoView {
 }
 ```
 
-# Add the explanation of the comonent in the game.rs #AI!
+## TicTacToe Component (game.rs)
+
+The `TicTacToe` component implements a complete Tic-Tac-Toe game with the following features:
+
+- Game board with 9 cells (3x3 grid)
+- Two players: ❌ and ⭕
+- Turn-based gameplay with timer (10 seconds per turn)
+- Win detection for rows, columns, and diagonals
+- Game state management:
+  - Board state tracking
+  - Current player tracking
+  - Winner detection
+  - Timer countdown
+  - Game start/reset functionality
+- UI Elements:
+  - Game board grid
+  - Player timers
+  - Status messages
+  - Start game button
+  - Winner modal with replay option
+
+Key Functions:
+- `check_winner`: Checks for winning combinations
+- `handle_click`: Processes player moves
+- `reset_game`: Resets the game state
+- `start_game`: Initiates a new game
+- Timer interval: Manages countdown for each player's turn
+
 ## Example component
