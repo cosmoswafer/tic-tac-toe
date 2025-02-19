@@ -106,7 +106,45 @@ Key Functions:
 - `start_game`: Initiates a new game
 - Timer interval: Manages countdown for each player's turn
 
-# Give an short example of the above component with using signals to manage the state for demonstration #AI!
 ```rust
+use leptos::*;
 
+#[component]
+fn SimpleTicTacToe() -> impl IntoView {
+    // Basic state management with signals
+    let (board, set_board) = create_signal(vec![String::new(); 9]);
+    let (current_player, set_current_player) = create_signal(String::from("❌"));
+    let (winner, set_winner) = create_signal(String::new());
+
+    let handle_click = move |index: usize| {
+        if board.get()[index].is_empty() && winner.get().is_empty() {
+            let mut new_board = board.get();
+            new_board[index] = current_player.get();
+            set_board.set(new_board);
+            
+            // Toggle player
+            let next_player = if current_player.get() == "❌" { "⭕" } else { "❌" };
+            set_current_player.set(String::from(next_player));
+        }
+    };
+
+    view! {
+        <div class="game">
+            <div class="status">
+                {"Current player: "}{move || current_player.get()}
+            </div>
+            <div class="board">
+                {(0..9)
+                    .map(|i| {
+                        view! {
+                            <button class="cell" on:click=move |_| handle_click(i)>
+                                {move || board.get()[i].clone()}
+                            </button>
+                        }
+                    })
+                    .collect::<Vec<_>>()}
+            </div>
+        </div>
+    }
+}
 ```
