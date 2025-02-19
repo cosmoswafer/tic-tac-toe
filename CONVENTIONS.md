@@ -106,7 +106,17 @@ Key Functions:
 - `start_game`: Initiates a new game
 - Timer interval: Manages countdown for each player's turn
 
-# Give a short example here #AI!
 ```rust
+// Example usage of TicTacToe component in main.rs
+use leptos::*;
 
+fn main() {
+    mount_to_body(|| {
+        view! { 
+            <div>
+                <TicTacToe/>
+            </div>
+        }
+    })
+}
 ```
