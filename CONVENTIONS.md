@@ -58,3 +58,5 @@ The `mount_to_body` function is a core Leptos utility that:
 - Handles WASM rendering of components to the DOM
 - Is typically used as the main entry point for Leptos apps
 
+# Add example snippet here #AI!
+```rust
