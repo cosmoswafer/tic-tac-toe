@@ -25,6 +25,7 @@ jobs:
         with:
           targets: wasm32-unknown-unknown
       
+          # Please install trunk via binstall instead of cargo install to use prebuilt binaries #AI!
       - name: Install trunk
         run: cargo install trunk
       
